@@ -1,7 +1,23 @@
+# app/models.py
 
 import sqlite3
 
+def criar_tabela():
+    conn = sqlite3.connect("financas.db")
+    cursor = conn.cursor()
 
+    # Criação da tabela transacoes, caso não exista
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS transacoes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        descricao TEXT NOT NULL,
+        valor REAL NOT NULL,
+        tipo TEXT NOT NULL CHECK(tipo IN ('receita', 'despesa'))
+    )
+    ''')
+
+    conn.commit()
+    conn.close()
 
 def adicionar_transacao(descricao, valor, tipo):
     conn = sqlite3.connect("financas.db")
@@ -31,3 +47,13 @@ def calcular_saldo():
 
     conn.close()
     return saldo
+
+def listar_transacoes():
+    conn = sqlite3.connect("financas.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT descricao, valor, tipo FROM transacoes ORDER BY rowid DESC")
+    transacoes = cursor.fetchall()
+
+    conn.close()
+    return transacoes

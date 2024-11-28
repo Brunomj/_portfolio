@@ -6,3 +6,5 @@ financas.db
 
 # Ignorar o diretório de ambiente virtual, se existir
 venv/
+build/
+dist/

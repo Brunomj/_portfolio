@@ -1,10 +1,6 @@
-from financas.database import init_db
-from financas.models import adicionar_transacao, calcular_saldo
+from financas.models import criar_tabela
 from financas.ui import run_ui
 
-init_db()
-def main():
-    run_ui()
-    
 if __name__ == "__main__":
-    main()
+    criar_tabela()  # Cria a tabela no banco de dados, se necessário
+    run_ui()  # Inicia a interface gráfica
