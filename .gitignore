@@ -1,0 +1,8 @@
+# Ignorar o banco de dados SQLite
+financas.db
+
+# Ignorar arquivos Python compilados
+*.pyc
+
+# Ignorar o diretório de ambiente virtual, se existir
+venv/
